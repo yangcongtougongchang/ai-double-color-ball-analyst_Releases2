@@ -9,8 +9,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-LATEST_JSON = ROOT / "latest.json"
-HISTORY_JSON = ROOT / "history.json"
+LATEST_JSON = ROOT / "latest_1.json"
+HISTORY_JSON = ROOT / "history_1.json"
 
 XML_URL = "https://kaijiang.500.com/static/info/kaijiang/xml/ssq/list.xml"
 HTML_URL = (
