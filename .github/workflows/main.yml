@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Run update script
-        run: python gitee-ssq-data/scripts/update_ssq_data.py
+        run: python update_ssq_data.py
 
       - name: Commit updated data to GitHub
         run: |
