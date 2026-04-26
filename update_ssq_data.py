@@ -16,6 +16,7 @@ XML_URL = "https://kaijiang.500.com/static/info/kaijiang/xml/ssq/list.xml"
 HTML_URL = (
     "https://datachart.500.com/ssq/history/newinc/history.php?start=03001&end=99999"
 )
+
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36"
 
 
@@ -83,8 +84,11 @@ def build_latest_announcement(latest_draw: dict) -> dict:
     issue = latest_draw["issue"]
     detail_url = f"https://datachart.500.com/ssq/history/newinc/history.php?start={issue}&end={issue}"
     text = fetch_text(detail_url).replace("\n", "").replace("\r", "")
-    row_match = re.search(r'<tr class="t_tr1">(.*?)</tr>', text)
-    if not row_match:
+    pattern = re.compile(
+        r'<tr class="t_tr1">.*?<td>(\d+)</td><td class="t_cfont2">\d+</td><td class="t_cfont2">\d+</td><td class="t_cfont2">\d+</td><td class="t_cfont2">\d+</td><td class="t_cfont2">\d+</td><td class="t_cfont2">\d+</td><td class="t_cfont4">\d+</td><td class="t_cfont4">.*?</td><td>([\d,]+)</td><td>(\d+)</td><td>([\d,]+)</td><td>(\d+)</td><td>([\d,]+)</td><td>([\d,]+)</td><td>(\d{4}-\d{2}-\d{2})</td>'
+    )
+    match = pattern.search(text)
+    if not match:
         return {
             "issue": issue,
             "drawDate": latest_draw["drawDate"][:10],
@@ -95,34 +99,15 @@ def build_latest_announcement(latest_draw: dict) -> dict:
             "secondPrizeCount": 0,
             "secondPrizeAmount": 0,
         }
-    row_html = re.sub(r"<!--.*?-->", "", row_match.group(1))
-    cells = re.findall(r"<td[^>]*>(.*?)</td>", row_html)
-    cleaned = [re.sub(r"<.*?>|&nbsp;", "", cell).strip() for cell in cells]
-    cleaned = [cell for cell in cleaned if cell != ""]
-    if len(cleaned) < 15:
-        return {
-            "issue": issue,
-            "drawDate": latest_draw["drawDate"][:10],
-            "salesAmount": 0,
-            "jackpotAmount": 0,
-            "firstPrizeCount": 0,
-            "firstPrizeAmount": 0,
-            "secondPrizeCount": 0,
-            "secondPrizeAmount": 0,
-        }
-
-    # 期号, 红1..红6, 蓝, 奖池, 一等奖注数, 一等奖金额, 二等奖注数, 二等奖金额, 销售额, 日期
-    if cleaned[0] != issue:
-        issue = cleaned[0]
     return {
-        "issue": issue,
-        "jackpotAmount": int(cleaned[8].replace(",", "")),
-        "firstPrizeCount": int(cleaned[9]),
-        "firstPrizeAmount": int(cleaned[10].replace(",", "")),
-        "secondPrizeCount": int(cleaned[11]),
-        "secondPrizeAmount": int(cleaned[12].replace(",", "")),
-        "salesAmount": int(cleaned[13].replace(",", "")),
-        "drawDate": cleaned[14],
+        "issue": match.group(1),
+        "jackpotAmount": int(match.group(2).replace(",", "")),
+        "firstPrizeCount": int(match.group(3)),
+        "firstPrizeAmount": int(match.group(4).replace(",", "")),
+        "secondPrizeCount": int(match.group(5)),
+        "secondPrizeAmount": int(match.group(6).replace(",", "")),
+        "salesAmount": int(match.group(7).replace(",", "")),
+        "drawDate": match.group(8),
     }
 
 
