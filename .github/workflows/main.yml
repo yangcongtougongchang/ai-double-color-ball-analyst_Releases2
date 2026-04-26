@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add latest.json history.json
+          git add latest_1.json history.json
           git commit -m "update ssq data" || echo "No changes to commit"
 
       - name: Push changes to GitHub
@@ -40,7 +40,7 @@ jobs:
 
       - name: Copy latest data to Gitee repo
         run: |
-          cp latest.json gitee_repo/latest.json
+          cp latest_1.json gitee_repo/latest_1.json
           cp history.json gitee_repo/history.json
 
       - name: Commit and push to Gitee
@@ -48,6 +48,6 @@ jobs:
           cd gitee_repo
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add latest.json history.json
+          git add latest_1.json history.json
           git commit -m "sync ssq data from github" || echo "No changes to commit"
           git push
