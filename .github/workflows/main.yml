@@ -1,1 +1,53 @@
-https://github.com/yangcongtougongchang/ai-double-color-ball-analyst_Releases2/new/main?filename=.github%2Fworkflows%2Fmain.yml&workflow_template=blank
+name: Update SSQ Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 13 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout GitHub repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run update script
+        run: python update_ssq_data.py
+
+      - name: Commit updated data to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json history.json
+          git commit -m "update ssq data" || echo "No changes to commit"
+
+      - name: Push changes to GitHub
+        run: git push
+
+      - name: Clone Gitee repository
+        run: |
+          git clone "https://liyanlian:70f76ca5b6bafc9f6f7f82e0b56216f6@gitee.com/liyanlian/ai-double-color-ball-analyst_-releases.git" gitee_repo
+
+      - name: Copy latest data to Gitee repo
+        run: |
+          cp latest.json gitee_repo/latest.json
+          cp history.json gitee_repo/history.json
+
+      - name: Commit and push to Gitee
+        run: |
+          cd gitee_repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latest.json history.json
+          git commit -m "sync ssq data from github" || echo "No changes to commit"
+          git push
