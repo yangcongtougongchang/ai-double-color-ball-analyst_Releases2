@@ -22,13 +22,13 @@ jobs:
           python-version: '3.11'
 
       - name: Run update script
-        run: python gitee-ssq-data/update_ssq_data.py
+        run: python gitee-ssq-data/scripts/update_ssq_data.py
 
       - name: Commit updated data to GitHub
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gitee-ssq-data/latest_1.json gitee-ssq-data/history_1.json
+          git add latest_1.json history_1.json
           git commit -m "update ssq data" || echo "No changes to commit"
 
       - name: Push changes to GitHub
@@ -37,8 +37,8 @@ jobs:
       - name: Clone and sync to Gitee
         run: |
           git clone "https://liyanlian:70f76ca5b6bafc9f6f7f82e0b56216f6@gitee.com/liyanlian/ai-double-color-ball-analyst_-releases.git" gitee_repo
-          cp gitee-ssq-data/latest_1.json gitee_repo/
-          cp gitee-ssq-data/history_1.json gitee_repo/
+          cp latest_1.json gitee_repo/
+          cp history_1.json gitee_repo/
           cd gitee_repo
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
