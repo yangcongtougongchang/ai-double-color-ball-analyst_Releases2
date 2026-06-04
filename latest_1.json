@@ -1,28 +1,28 @@
 {
   "source": "500-xml",
-  "updatedAt": "2026-06-03 18:07:25",
-  "latestIssue": "26062",
+  "updatedAt": "2026-06-04 16:31:31",
+  "latestIssue": "26063",
   "latestAnnouncement": {
-    "issue": "26062",
-    "jackpotAmount": 909990283,
-    "firstPrizeCount": 30,
-    "firstPrizeAmount": 3333333,
-    "secondPrizeCount": 139,
-    "secondPrizeAmount": 6000,
-    "salesAmount": 402189304,
-    "drawDate": "2026-06-02"
+    "issue": "26063",
+    "jackpotAmount": 816837950,
+    "firstPrizeCount": 20,
+    "firstPrizeAmount": 5000000,
+    "secondPrizeCount": 117,
+    "secondPrizeAmount": 234108,
+    "salesAmount": 393294950,
+    "drawDate": "2026-06-04"
   },
   "latestDraw": {
-    "issue": "26062",
-    "drawDate": "2026-06-02 21:15:00",
+    "issue": "26063",
+    "drawDate": "2026-06-04 21:15:00",
     "redBalls": [
       2,
-      4,
-      7,
-      14,
+      8,
+      25,
       28,
-      29
+      30,
+      31
     ],
-    "blueBall": 9
+    "blueBall": 2
   }
 }
