@@ -1,16 +1,16 @@
 {
   "source": "500-xml",
-  "updatedAt": "2026-08-25 14:11:57",
+  "updatedAt": "2026-08-26 14:10:00",
   "latestIssue": "26098",
   "totalCount": 3495,
   "latestAnnouncement": {
     "issue": "26098",
-    "jackpotAmount": 0,
-    "firstPrizeCount": 0,
-    "firstPrizeAmount": 0,
-    "secondPrizeCount": 0,
-    "secondPrizeAmount": 0,
-    "salesAmount": 0,
+    "jackpotAmount": 711169786,
+    "firstPrizeCount": 7,
+    "firstPrizeAmount": 6866583,
+    "secondPrizeCount": 122,
+    "secondPrizeAmount": 133873,
+    "salesAmount": 337464770,
     "drawDate": "2026-08-25"
   },
   "draws": [
