@@ -1,28 +1,28 @@
 {
   "source": "500-xml",
-  "updatedAt": "2026-09-19 16:37:59",
-  "latestIssue": "26108",
+  "updatedAt": "2026-09-20 16:54:54",
+  "latestIssue": "26109",
   "latestAnnouncement": {
-    "issue": "26108",
-    "jackpotAmount": 917243647,
-    "firstPrizeCount": 2,
-    "firstPrizeAmount": 10000000,
-    "secondPrizeCount": 95,
-    "secondPrizeAmount": 276194,
-    "salesAmount": 335294274,
-    "drawDate": "2026-09-17"
+    "issue": "26109",
+    "jackpotAmount": 936353465,
+    "firstPrizeCount": 5,
+    "firstPrizeAmount": 8207986,
+    "secondPrizeCount": 114,
+    "secondPrizeAmount": 175876,
+    "salesAmount": 359008756,
+    "drawDate": "2026-09-20"
   },
   "latestDraw": {
-    "issue": "26108",
-    "drawDate": "2026-09-17 21:15:00",
+    "issue": "26109",
+    "drawDate": "2026-09-20 21:15:00",
     "redBalls": [
-      6,
-      11,
-      13,
-      14,
-      20,
-      28
+      9,
+      12,
+      15,
+      26,
+      30,
+      33
     ],
-    "blueBall": 16
+    "blueBall": 6
   }
 }
